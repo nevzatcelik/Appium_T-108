@@ -39,7 +39,7 @@ public class DenemeTesti {
 
     @Test
     public void carpma(){
-
+        driver.activateApp("com.google.android.calculator");
         driver.findElementByAccessibilityId("8").click();
         driver.findElementByAccessibilityId("0").click();
         driver.findElementByAccessibilityId("multiply").click();
@@ -54,7 +54,7 @@ public class DenemeTesti {
 
     @Test
     public void toplama(){
-        driver.activateApp("com.google.android.calculator");
+
     }
 
 

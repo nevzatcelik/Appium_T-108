@@ -1,6 +1,8 @@
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -10,6 +12,22 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class ArabamAppTest {
+    // Arabam kac para bolumune tiklayalim
+// Aracimin fiyatini merak ediyorum bolumunetiklayalim
+// Wolkswagen markasini secelim
+// yil secimi yapalim
+// model secimi yapalim
+// govde tipini secelim
+// yakit tipini secelim
+// vites tipini secelim
+// Versiyon secimi yapalim
+// aracin km bilgilerini girelim
+// aracin rengini secelim
+// opsiyel donanim (varsa) seecelim
+// degisen bilgisi ekleyerek tramer kaydi belirtelim
+// aracimizin fiyatinin 500.000 tl den fazla oldugunu test edelim
+// uygulamayi kapatalim
+
 
     AndroidDriver<AndroidElement> driver; //android cihazlarin driveri
     final String cihazAdi="PIXEL2";
@@ -34,6 +52,15 @@ public class ArabamAppTest {
     }
     @Test
     public void arabamTest(){
+    // driver.findElement(By.xpath("//*[@text='İlan ver']")).click();
+        // Arabam kac para bolumune tiklayalim
+        driver.findElement(By.xpath("(//*[@text='Arabam kaç para?'])[1]")).click();
+// Aracimin fiyatini merak ediyorum bolumunetiklayalim
 
+        AndroidElement fiyatMerak =driver.findElement(By.xpath("//*[@text='Aracımın fiyatını merak ediyorum']"));
+        fiyatMerak.click();
+// Wolkswagen markasini secelim
+// yil secimi yapalim
+// model secimi yapalim
     }
 }
