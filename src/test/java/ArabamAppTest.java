@@ -8,6 +8,7 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -64,6 +65,7 @@ public class ArabamAppTest {
         AndroidElement fiyatMerak =driver.findElement(By.xpath("//*[@text='Aracımın fiyatını merak ediyorum']"));
         fiyatMerak.click();
     // Wolkswagen markasini secelim
+        Thread.sleep(1000);
         TouchAction action=new TouchAction<>(driver);
          action.press(PointOption.point(543,1732)).
                 waitAction(WaitOptions.waitOptions(Duration.ofMillis(500))).
@@ -73,7 +75,7 @@ public class ArabamAppTest {
          driver.findElementByXPath("//*[@text='Volkswagen']").click();
      /*
          action.press(PointOption.point(537,381)).
-                 waitAction(WaitOptions.waitOptions(Duration.ofMillis(500))).
+                 waitAction(WaitOptions.waitOptions(Dration.ofMillis(500))).
                  moveTo(PointOption.point(543,1732)).release().perform();
            Eger ki bizler daha onceden kaydirma islemi gerceklestirmissek tam tersi haraketini gerceklestirmek icin yazdigimiz
            koordinat degerlerini tam tersi olacak sekilde yazmak o islemin zittini gerceklestirir.
@@ -89,13 +91,38 @@ public class ArabamAppTest {
         driver.findElementByXPath("//*[@text='Benzin']").click();
     // vites tipini secelim
         driver.findElementByXPath("//*[@text='Yarı Otomatik']").click();
-// Versiyon secimi yapalim
-       action.press(PointOption.point(490,1747)).release().perform(); //490,1747
-// aracin km bilgilerini girelim
-// aracin rengini secelim
-// opsiyel donanim (varsa) seecelim
-// degisen bilgisi ekleyerek tramer kaydi belirtelim
-// aracimizin fiyatinin 500.000 tl den fazla oldugunu test edelim
-// uygulamayi kapatalim
+    // Versiyon secimi yapalim
+        Thread.sleep(1000);
+       action.press(PointOption.point(453,1738)).release().perform(); //490,1747
+    // aracin km bilgilerini girelim
+        if (driver.isKeyboardShown()){
+            driver.getKeyboard().pressKey("190000");
+        }
+        else {
+            driver.findElementById("com.dogan.arabam:id/et_km").sendKeys("150000");
+        }
+     driver.findElementById("com.dogan.arabam:id/btn_price_prediction_submit").click();
+    // aracin rengini secelim
+     driver.findElementByXPath("//*[@text='Gri (metalik)']").click();
+    // opsiyel donanim (varsa) seecelim
+        driver.findElementById("com.dogan.arabam:id/btnNext").click();
+    // degisen bilgisi ekleyerek tramer kaydi belirtelim
+        AndroidElement kaput=driver.findElementById("com.dogan.arabam:id/iv_B01001");
+        kaput.click();
+        Thread.sleep(1000);
+        driver.findElementByXPath("(//*[@text='Boyalı'])[2]").click();
+        Thread.sleep(1000);
+        driver.findElementById("com.dogan.arabam:id/btn_next").click();
+        // tramer kaydi yok kismina tiklayalim
+        driver.findElementById("com.dogan.arabam:id/rbHasNoTramerEntry").click();
+        driver.findElementById("com.dogan.arabam:id/btnNext").click();
+    // aracimizin fiyatinin 500.000 tl den fazla oldugunu test edelim
+      String avaragePrice= driver.findElementById("com.dogan.arabam:id/tvAveragePrice").getText();
+      //588.500 TL
+        String lastPrice=avaragePrice.replaceAll("\\D","");
+        Assert.assertTrue(Integer.parseInt(lastPrice)>500000);
+
+    // uygulamayi kapatalim
+        driver.closeApp();
     }
 }
