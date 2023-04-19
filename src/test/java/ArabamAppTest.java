@@ -1,14 +1,19 @@
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class ArabamAppTest {
@@ -51,16 +56,46 @@ public class ArabamAppTest {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
     @Test
-    public void arabamTest(){
+    public void arabamTest() throws InterruptedException {
     // driver.findElement(By.xpath("//*[@text='İlan ver']")).click();
         // Arabam kac para bolumune tiklayalim
         driver.findElement(By.xpath("(//*[@text='Arabam kaç para?'])[1]")).click();
-// Aracimin fiyatini merak ediyorum bolumunetiklayalim
-
+    // Aracimin fiyatini merak ediyorum bolumunetiklayalim
         AndroidElement fiyatMerak =driver.findElement(By.xpath("//*[@text='Aracımın fiyatını merak ediyorum']"));
         fiyatMerak.click();
-// Wolkswagen markasini secelim
-// yil secimi yapalim
-// model secimi yapalim
+    // Wolkswagen markasini secelim
+        TouchAction action=new TouchAction<>(driver);
+         action.press(PointOption.point(543,1732)).
+                waitAction(WaitOptions.waitOptions(Duration.ofMillis(500))).
+                moveTo(PointOption.point(537,381)).release().perform();
+
+         Thread.sleep(1000);
+         driver.findElementByXPath("//*[@text='Volkswagen']").click();
+     /*
+         action.press(PointOption.point(537,381)).
+                 waitAction(WaitOptions.waitOptions(Duration.ofMillis(500))).
+                 moveTo(PointOption.point(543,1732)).release().perform();
+           Eger ki bizler daha onceden kaydirma islemi gerceklestirmissek tam tersi haraketini gerceklestirmek icin yazdigimiz
+           koordinat degerlerini tam tersi olacak sekilde yazmak o islemin zittini gerceklestirir.
+      */
+
+    // yil secimi yapalim
+        driver.findElementByXPath("//*[@text='2011']").click();
+    // model secimi yapalim
+        driver.findElementByXPath("//*[@text='Passat']").click();
+        // govde tipini secelim
+        driver.findElementByXPath("//*[@text='Sedan']").click();
+     // yakit tipini secelim
+        driver.findElementByXPath("//*[@text='Benzin']").click();
+    // vites tipini secelim
+        driver.findElementByXPath("//*[@text='Yarı Otomatik']").click();
+// Versiyon secimi yapalim
+       action.press(PointOption.point(490,1747)).release().perform(); //490,1747
+// aracin km bilgilerini girelim
+// aracin rengini secelim
+// opsiyel donanim (varsa) seecelim
+// degisen bilgisi ekleyerek tramer kaydi belirtelim
+// aracimizin fiyatinin 500.000 tl den fazla oldugunu test edelim
+// uygulamayi kapatalim
     }
 }
