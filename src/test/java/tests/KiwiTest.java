@@ -42,7 +42,21 @@ public class KiwiTest {
         // ardinda gelecek olan 3 adimada yesil butona basilarak devam edilir
         page.ucButtonTiklama(0,3,538,1686,500);
 
-
+        // Trip type,one way olarak secilir
+          page.returnButton.click();
+          page.oneWay.click();
+        // kalkis ulkesi secenegine tiklanir ve default olan ulke kaldirilir
+        page.kalkisButonu.click();
+        page.defaultUlkeSILME.click();
+        // kalkis yapilacak ulke/sehir girilir ve sec e tiklanir
+        driver.getKeyboard().pressKey("izmir");
+        page.izmir.click();
+        page.choose.click();
+    // varis ulkesi secenegine tiklanir ve gidilecek ulke girilir
+    // gidis tarihi mayis ayinin 21 i olarak secilir ve set date e tiklanir
+    // search butonuna tiklanir
+    // en  ucuz ve aktarmasiz filtrelemeleri yapilir
+    // gelen bilet fiyati kaydedilir ve kullanicin telefonuna sms olarak gonderilir
 
     }
 }
