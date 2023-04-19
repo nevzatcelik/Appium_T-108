@@ -19,11 +19,11 @@ public class KiwiPage {
     @FindBy(xpath = "//*[@text='Continue as a guest']")
     public WebElement asAGuest;
 
-    public void ucButtonTiklama(){
+    public static void ucButtonTiklama(int baslangic,int bitis,int xCoordinat,int yCoordinat,int wait){
         TouchAction action=new TouchAction<>(Driver.getAndroidDriver());
-        for (int i=0; i<3; i++){
-            action.press(PointOption.point(538,1686)).
-                    waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+        for (int i=baslangic; i<bitis; i++){
+            action.press(PointOption.point(xCoordinat,yCoordinat)).
+                    waitAction(WaitOptions.waitOptions(Duration.ofMillis(wait)))
                     .release().
                     perform();
         }

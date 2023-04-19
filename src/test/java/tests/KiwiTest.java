@@ -40,7 +40,7 @@ public class KiwiTest {
         // misafir olarak devam et e tiklanir
         page.asAGuest.click();
         // ardinda gelecek olan 3 adimada yesil butona basilarak devam edilir
-        page.ucButtonTiklama();
+        page.ucButtonTiklama(0,3,538,1686,500);
 
 
 
