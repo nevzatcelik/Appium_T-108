@@ -16,6 +16,7 @@ public class AllCurrencyTest {
 // uygulamanin acildigi dogrulanir
 // cevirmek istedigimiz para birimi zloty olarak secilir
 // cevirelecek olan para birimi Tl olarak secilir
+
 // cevrilen tutar screenShot olarak kaydedilir
 // Ardindan zloty nin tl karsiligi olan tl degeri kaydedilir
 // bu islem dolar tl, sweden kron-tl, Japon yeni- tl olarak tekrarlanir ve kullaniciya sms olarak bildirilir
@@ -37,6 +38,10 @@ AndroidDriver<AndroidElement> driver= Driver.getAndroidDriver();
 
         driver.findElement(By.id("com.smartwho.SmartAllCurrencyConverter:id/SpinnerCurrencyB")).click();
         ReusableMethods.scrollWithUiScrollable("Turkish Lira");
+        driver.findElement(By.id("com.smartwho.SmartAllCurrencyConverter:id/b1")).click();
+        driver.findElement(By.id("com.smartwho.SmartAllCurrencyConverter:id/b5")).click();
+        driver.findElement(By.id("com.smartwho.SmartAllCurrencyConverter:id/b0")).click();
+        driver.findElement(By.id("com.smartwho.SmartAllCurrencyConverter:id/b0")).click();
 
 
     }
