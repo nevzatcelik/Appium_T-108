@@ -64,15 +64,19 @@ public class KiwiTest {
         action.press(PointOption.point(542,1361)).
                 waitAction(WaitOptions.waitOptions(Duration.ofMillis(500))).
                 moveTo(PointOption.point(514,208)).release().perform();
-      //  Thread.sleep(1500);
-        action.press(PointOption.point(115,1074)).release().perform();
+        Thread.sleep(1500);
+        action.press(PointOption.point(115,1000)).release().perform();
         page.setDateButton.click();
 
     // search butonuna tiklanir
         page.searchButton.click();
     // en  ucuz ve aktarmasiz filtrelemeleri yapilir
         page.bestPrice.click();
+        page.cheapest.click();
+        page.stops.click();
+        page.nonStop.click();
     // gelen bilet fiyati kaydedilir ve kullanicin telefonuna sms olarak gonderilir
-
+       String price= page.ticketPrice.getText();
+       driver.sendSMS("5555555555",price);
     }
 }
