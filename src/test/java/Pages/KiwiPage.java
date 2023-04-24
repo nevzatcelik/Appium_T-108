@@ -38,6 +38,31 @@ public class KiwiPage {
     @FindBy(xpath = "//*[@text='Choose']")
     public WebElement choose;
 
+    @FindBy(xpath = "(//*[@text='Anywhere'])[1]")
+    public WebElement anyWhere;
+
+    @FindBy(xpath = "(//*[@text='Berlin, Germany'])[1]")
+    public WebElement berlin;
+
+    @FindBy(xpath = "(//*[@text='Anytime'])[1]")
+    private WebElement anyTimeButton;
+
+    @FindBy(id = "com.skypicker.main:id/saveButton")
+     public WebElement setDateButton;
+
+    @FindBy(xpath = "(//*[@text='Search'])[1]")
+    public WebElement searchButton;
+
+    @FindBy(xpath = "(//*[@text='Best'])[1]")
+    public WebElement bestPrice;
+
+    @FindBy(xpath = "(//*[@text='Cheapest'])[1]")
+    public WebElement cheapest;
+
+    public void anyTimeButtonClick(){
+        anyTimeButton.click();
+    }
+
     public static void ucButtonTiklama(int baslangic,int bitis,int xCoordinat,int yCoordinat,int wait){
         TouchAction action=new TouchAction<>(Driver.getAndroidDriver());
         for (int i=baslangic; i<bitis; i++){
